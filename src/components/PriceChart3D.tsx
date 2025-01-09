@@ -27,9 +27,11 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         
-        <PriceLineGraph data={data} />
-        <DataPoints data={data} />
-        <Grid />
+        <group>
+          <PriceLineGraph data={data} />
+          <DataPoints data={data} />
+          <Grid />
+        </group>
         
         <OrbitControls
           enablePan={false}
