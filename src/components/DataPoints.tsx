@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import * as THREE from 'three';
 import { normalizeData } from '@/utils/dataUtils';
-import type { PriceDataPoint } from '@/types/price';
+import type { PricePoint } from '@/types/price';
 
 interface DataPointsProps {
-  data: PriceDataPoint[];
+  data: PricePoint[];
 }
 
 export const DataPoints = ({ data }: DataPointsProps) => {

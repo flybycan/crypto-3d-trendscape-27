@@ -1,11 +1,11 @@
-import type { PriceDataPoint } from '@/types/price';
+import type { PricePoint } from '@/types/price';
 
 interface NormalizedPoint {
   x: number;
   y: number;
 }
 
-export const normalizeData = (data: PriceDataPoint[]): NormalizedPoint[] => {
+export const normalizeData = (data: PricePoint[]): NormalizedPoint[] => {
   if (!data.length) return [];
 
   const maxPrice = Math.max(...data.map(d => d.price));
