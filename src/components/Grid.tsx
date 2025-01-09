@@ -15,6 +15,7 @@ export const Grid = () => {
       fadeDistance={30}
       fadeStrength={1}
       position={[0, -2, 0]}
+      rotation={[-Math.PI / 2, 0, 0]}
     />
   );
 };
