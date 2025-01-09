@@ -14,14 +14,14 @@ export const PriceLineGraph = ({ data }: PriceLineGraphProps) => {
     return normalizedData.map(point => new THREE.Vector3(point.x, point.y, 0));
   }, [data]);
 
-  console.log('Rendering PriceLineGraph with points:', points);
-
   return (
-    <Line
-      points={points}
-      color="#9b87f5"
-      lineWidth={2}
-      dashed={false}
-    />
+    <group>
+      <Line
+        points={points}
+        color="#9b87f5"
+        lineWidth={2}
+        dashed={false}
+      />
+    </group>
   );
 };

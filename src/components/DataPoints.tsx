@@ -13,16 +13,14 @@ export const DataPoints = ({ data }: DataPointsProps) => {
     return normalizedData.map(point => new THREE.Vector3(point.x, point.y, 0));
   }, [data]);
 
-  console.log('Rendering DataPoints with points:', points);
-
   return (
-    <>
+    <group>
       {points.map((point, i) => (
         <mesh key={i} position={point}>
           <sphereGeometry args={[0.1, 16, 16]} />
           <meshStandardMaterial color="#9b87f5" />
         </mesh>
       ))}
-    </>
+    </group>
   );
 };

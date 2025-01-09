@@ -1,8 +1,6 @@
 import { Grid as DreiGrid } from '@react-three/drei';
 
 export const Grid = () => {
-  console.log('Rendering Grid');
-  
   return (
     <DreiGrid
       args={[20, 20]}

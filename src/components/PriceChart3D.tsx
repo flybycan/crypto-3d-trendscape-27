@@ -11,22 +11,20 @@ interface PriceChart3DProps {
 }
 
 const Scene = ({ data }: PriceChart3DProps) => {
-  console.log('Rendering Scene with data:', data);
-  
   return (
-    <>
+    <group>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1.5} />
-      <PriceLineGraph data={data} />
-      <DataPoints data={data} />
-      <Grid />
-    </>
+      <group position={[0, 0, 0]}>
+        <PriceLineGraph data={data} />
+        <DataPoints data={data} />
+        <Grid />
+      </group>
+    </group>
   );
 };
 
 const PriceChart3D = ({ data }: PriceChart3DProps) => {
-  console.log('Rendering PriceChart3D with data:', data);
-  
   return (
     <div className="chart-container h-[500px] w-full relative">
       <Canvas
