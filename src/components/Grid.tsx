@@ -4,7 +4,7 @@ export const Grid = () => {
   console.log('Rendering Grid');
   
   return (
-    <mesh>
+    <group>
       <DreiGrid
         args={[20, 20]}
         cellSize={1}
@@ -18,6 +18,6 @@ export const Grid = () => {
         position={[0, -2, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
-    </mesh>
+    </group>
   );
 };
