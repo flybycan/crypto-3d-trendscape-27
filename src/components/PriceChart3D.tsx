@@ -4,6 +4,7 @@ import { PriceLineGraph } from './PriceLineGraph';
 import { DataPoints } from './DataPoints';
 import { Grid } from './Grid';
 import type { PricePoint } from '@/types/price';
+import { Suspense } from 'react';
 
 interface PriceChart3DProps {
   data: PricePoint[];
@@ -13,7 +14,7 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
   console.log('Rendering PriceChart3D with data:', data);
   
   return (
-    <div style={{ width: '100%', height: '500px' }}>
+    <div style={{ width: '100%', height: '500px', position: 'relative' }}>
       <Canvas
         camera={{ 
           position: [0, 0, 10],
@@ -27,14 +28,16 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         
-        <group>
-          <PriceLineGraph data={data} />
-          <DataPoints data={data} />
-          <Grid />
-        </group>
+        <Suspense fallback={null}>
+          <group position={[0, 0, 0]}>
+            <PriceLineGraph data={data} />
+            <DataPoints data={data} />
+            <Grid />
+          </group>
+        </Suspense>
         
         <OrbitControls
-          enablePan={false}
+          enablePan={true}
           enableZoom={true}
           minDistance={5}
           maxDistance={15}
