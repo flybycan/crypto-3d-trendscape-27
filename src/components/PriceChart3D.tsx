@@ -32,20 +32,14 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
     return geometry;
   }, [points]);
 
-  const lineMaterial = useMemo(() => {
-    return new THREE.LineBasicMaterial({ color: '#9b87f5' });
-  }, []);
-
-  const line = useMemo(() => {
-    return new THREE.Line(lineGeometry, lineMaterial);
-  }, [lineGeometry, lineMaterial]);
-
   return (
     <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       
-      <primitive object={line} />
+      <line geometry={lineGeometry}>
+        <lineBasicMaterial attach="material" color="#9b87f5" />
+      </line>
       
       {points.map((point, i) => (
         <mesh key={i} position={point}>
