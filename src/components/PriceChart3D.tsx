@@ -13,6 +13,7 @@ interface PriceChart3DProps {
 }
 
 const PriceChart3D = ({ data }: PriceChart3DProps) => {
+  // Memoize points calculation
   const points = useMemo(() => {
     const pts = [];
     const maxPrice = Math.max(...data.map(d => d.price));
@@ -27,20 +28,27 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
     return pts;
   }, [data]);
 
+  // Memoize line geometry
   const lineGeometry = useMemo(() => {
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    return geometry;
+    return new THREE.BufferGeometry().setFromPoints(points);
   }, [points]);
+
+  // Memoize line material
+  const lineMaterial = useMemo(() => {
+    return new THREE.LineBasicMaterial({ color: '#9b87f5' });
+  }, []);
+
+  // Memoize line object
+  const line = useMemo(() => {
+    return new THREE.Line(lineGeometry, lineMaterial);
+  }, [lineGeometry, lineMaterial]);
 
   return (
     <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       
-      <primitive object={new THREE.Line(
-        lineGeometry,
-        new THREE.LineBasicMaterial({ color: '#9b87f5' })
-      )} />
+      <primitive object={line} />
       
       {points.map((point, i) => (
         <mesh key={i} position={point}>
