@@ -34,9 +34,11 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
         <pointLight position={[10, 10, 10]} intensity={1.5} />
         
         <Suspense fallback={null}>
-          <PriceLineGraph data={data} />
-          <DataPoints data={data} />
-          <Grid />
+          <group>
+            <PriceLineGraph data={data} />
+            <DataPoints data={data} />
+            <Grid />
+          </group>
         </Suspense>
         
         <OrbitControls
