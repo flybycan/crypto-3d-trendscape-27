@@ -1,12 +1,14 @@
-import { GridHelper } from '@react-three/drei';
+import { Grid as DreiGrid } from '@react-three/drei';
 
 export const Grid = () => {
   console.log('Rendering Grid');
   
   return (
-    <GridHelper 
-      args={[20, 20, "#666666", "#444444"]} 
+    <DreiGrid 
+      args={[20, 20]} 
       position={[0, 0, -0.1]} 
+      cellColor="#666666"
+      sectionColor="#444444"
     />
   );
 };
