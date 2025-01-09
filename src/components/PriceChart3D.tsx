@@ -10,6 +10,22 @@ interface PriceChart3DProps {
   data: PricePoint[];
 }
 
+const Scene = ({ data }: PriceChart3DProps) => {
+  console.log('Rendering Scene with data:', data);
+  
+  return (
+    <>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={1.5} />
+      <group>
+        <PriceLineGraph data={data} />
+        <DataPoints data={data} />
+        <Grid />
+      </group>
+    </>
+  );
+};
+
 const PriceChart3D = ({ data }: PriceChart3DProps) => {
   console.log('Rendering PriceChart3D with data:', data);
   
@@ -28,17 +44,9 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
         }}
       >
         <color attach="background" args={['#000000']} />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1.5} />
-        
         <Suspense fallback={null}>
-          <group>
-            <PriceLineGraph data={data} />
-            <DataPoints data={data} />
-            <Grid />
-          </group>
+          <Scene data={data} />
         </Suspense>
-        
         <OrbitControls
           enablePan={true}
           enableZoom={true}
