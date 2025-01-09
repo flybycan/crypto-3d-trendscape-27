@@ -14,13 +14,13 @@ const Scene = ({ data }: PriceChart3DProps) => {
   console.log('Rendering Scene with data:', data);
   
   return (
-    <group>
+    <>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1.5} />
       <PriceLineGraph data={data} />
       <DataPoints data={data} />
       <Grid />
-    </group>
+    </>
   );
 };
 
