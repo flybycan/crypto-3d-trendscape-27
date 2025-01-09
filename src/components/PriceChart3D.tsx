@@ -22,8 +22,16 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
           near: 0.1,
           far: 1000
         }}
-        gl={{ antialias: true }}
+        gl={{ 
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance"
+        }}
         style={{ background: '#000000' }}
+        onCreated={({ gl }) => {
+          gl.setClearColor('#000000', 0);
+          console.log('Canvas created successfully');
+        }}
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1.5} />
