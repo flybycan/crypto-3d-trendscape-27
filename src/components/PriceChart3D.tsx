@@ -24,23 +24,28 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
         }}
         gl={{ antialias: true }}
         style={{ background: '#000000' }}
+        dpr={[1, 2]}
       >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1.5} />
-        
-        <Suspense fallback={null}>
-          <PriceLineGraph data={data} />
-          <DataPoints data={data} />
-          <Grid />
-        </Suspense>
-        
-        <OrbitControls
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-          minDistance={5}
-          maxDistance={20}
-        />
+        <scene>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
+          
+          <Suspense fallback={null}>
+            <group>
+              <PriceLineGraph data={data} />
+              <DataPoints data={data} />
+              <Grid />
+            </group>
+          </Suspense>
+          
+          <OrbitControls
+            enablePan={true}
+            enableZoom={true}
+            enableRotate={true}
+            minDistance={5}
+            maxDistance={20}
+          />
+        </scene>
       </Canvas>
     </div>
   );
