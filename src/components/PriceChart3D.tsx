@@ -37,9 +37,10 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       
-      <line geometry={lineGeometry}>
-        <lineBasicMaterial attach="material" color="#9b87f5" />
-      </line>
+      <primitive object={new THREE.Line(
+        lineGeometry,
+        new THREE.LineBasicMaterial({ color: '#9b87f5' })
+      )} />
       
       {points.map((point, i) => (
         <mesh key={i} position={point}>
