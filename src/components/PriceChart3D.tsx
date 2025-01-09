@@ -28,21 +28,15 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
           powerPreference: "high-performance"
         }}
         style={{ background: 'transparent' }}
-        onCreated={({ gl }) => {
-          gl.setClearColor('#000000', 0);
-          console.log('Canvas created successfully');
-        }}
       >
         <color attach="background" args={['#000000']} />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1.5} />
         
         <Suspense fallback={null}>
-          <group>
-            <PriceLineGraph data={data} />
-            <DataPoints data={data} />
-            <Grid />
-          </group>
+          <PriceLineGraph data={data} />
+          <DataPoints data={data} />
+          <Grid />
         </Suspense>
         
         <OrbitControls
