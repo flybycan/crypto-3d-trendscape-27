@@ -36,6 +36,11 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
           near: 0.1,
           far: 1000
         }}
+        gl={{
+          antialias: true,
+          alpha: false,
+          preserveDrawingBuffer: true
+        }}
       >
         <color attach="background" args={['#000000']} />
         <Suspense fallback={null}>
