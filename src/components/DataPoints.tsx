@@ -16,13 +16,13 @@ export const DataPoints = ({ data }: DataPointsProps) => {
   console.log('Rendering DataPoints with points:', points);
 
   return (
-    <>
+    <group>
       {points.map((point, i) => (
         <mesh key={i} position={point}>
           <sphereGeometry args={[0.1, 16, 16]} />
           <meshStandardMaterial color="#9b87f5" />
         </mesh>
       ))}
-    </>
+    </group>
   );
 };

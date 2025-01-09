@@ -14,15 +14,13 @@ const Scene = ({ data }: PriceChart3DProps) => {
   console.log('Rendering Scene with data:', data);
   
   return (
-    <>
+    <group>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1.5} />
-      <group>
-        <PriceLineGraph data={data} />
-        <DataPoints data={data} />
-        <Grid />
-      </group>
-    </>
+      <PriceLineGraph data={data} />
+      <DataPoints data={data} />
+      <Grid />
+    </group>
   );
 };
 
@@ -37,10 +35,6 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
           fov: 60,
           near: 0.1,
           far: 1000
-        }}
-        gl={{
-          antialias: true,
-          alpha: true
         }}
       >
         <color attach="background" args={['#000000']} />
