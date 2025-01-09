@@ -17,13 +17,11 @@ export const PriceLineGraph = ({ data }: PriceLineGraphProps) => {
   console.log('Rendering PriceLineGraph with points:', points);
 
   return (
-    <group>
-      <Line
-        points={points}
-        color="#9b87f5"
-        lineWidth={2}
-        dashed={false}
-      />
-    </group>
+    <Line
+      points={points}
+      color="#9b87f5"
+      lineWidth={2}
+      dashed={false}
+    />
   );
 };
