@@ -11,7 +11,7 @@ interface PriceLineGraphProps {
 export const PriceLineGraph = ({ data }: PriceLineGraphProps) => {
   const points = useMemo(() => {
     const normalizedData = normalizeData(data);
-    return normalizedData.map(point => new THREE.Vector3(point.x, point.y, 0));
+    return normalizedData.map(point => [point.x, point.y, 0]);
   }, [data]);
 
   return (

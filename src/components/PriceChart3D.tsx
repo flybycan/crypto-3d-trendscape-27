@@ -12,7 +12,7 @@ interface PriceChart3DProps {
 
 const Scene = ({ data }: PriceChart3DProps) => {
   return (
-    <group>
+    <>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1.5} />
       <group position={[0, 0, 0]}>
@@ -20,7 +20,7 @@ const Scene = ({ data }: PriceChart3DProps) => {
         <DataPoints data={data} />
         <Grid />
       </group>
-    </group>
+    </>
   );
 };
 
