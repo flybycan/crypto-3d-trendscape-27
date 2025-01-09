@@ -14,7 +14,7 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
   console.log('Rendering PriceChart3D with data:', data);
   
   return (
-    <div className="chart-container">
+    <div className="chart-container h-[500px] w-full relative">
       <Canvas
         camera={{ 
           position: [5, 5, 10],
@@ -23,17 +23,15 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
           far: 1000
         }}
         gl={{ antialias: true }}
+        style={{ background: '#000000' }}
       >
-        <color attach="background" args={['#000000']} />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1.5} />
         
         <Suspense fallback={null}>
-          <group>
-            <PriceLineGraph data={data} />
-            <DataPoints data={data} />
-            <Grid />
-          </group>
+          <PriceLineGraph data={data} />
+          <DataPoints data={data} />
+          <Grid />
         </Suspense>
         
         <OrbitControls
