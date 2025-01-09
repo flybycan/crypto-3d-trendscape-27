@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { useMemo } from 'react';
 import * as THREE from 'three';
 
@@ -32,16 +32,16 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
     return geometry;
   }, [points]);
 
+  const lineMaterial = useMemo(() => {
+    return new THREE.LineBasicMaterial({ color: '#9b87f5', linewidth: 2 });
+  }, []);
+
   return (
     <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       
-      {/* Replace the incorrect line element with proper Three.js line */}
-      <primitive object={new THREE.Line(
-        lineGeometry,
-        new THREE.LineBasicMaterial({ color: '#9b87f5', linewidth: 2 })
-      )} />
+      <line geometry={lineGeometry} material={lineMaterial} />
       
       {points.map((point, i) => (
         <mesh key={i} position={point}>
