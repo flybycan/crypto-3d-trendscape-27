@@ -1,61 +1,25 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { useMemo } from 'react';
-import * as THREE from 'three';
-
-interface PricePoint {
-  price: number;
-  timestamp: number;
-}
+import { PriceLineGraph } from './PriceLineGraph';
+import { DataPoints } from './DataPoints';
+import { Grid } from './Grid';
+import type { PricePoint } from '@/types/price';
 
 interface PriceChart3DProps {
   data: PricePoint[];
 }
 
 const PriceChart3D = ({ data }: PriceChart3DProps) => {
-  // Memoize points calculation
-  const points = useMemo(() => {
-    const pts = [];
-    const maxPrice = Math.max(...data.map(d => d.price));
-    const minPrice = Math.min(...data.map(d => d.price));
-    const range = maxPrice - minPrice;
-    
-    for (let i = 0; i < data.length; i++) {
-      const x = (i / (data.length - 1)) * 10 - 5;
-      const y = ((data[i].price - minPrice) / range) * 4 - 2;
-      pts.push(new THREE.Vector3(x, y, 0));
-    }
-    return pts;
-  }, [data]);
-
-  // Memoize line geometry
-  const lineGeometry = useMemo(() => {
-    return new THREE.BufferGeometry().setFromPoints(points);
-  }, [points]);
-
-  // Memoize line material
-  const lineMaterial = useMemo(() => {
-    return new THREE.LineBasicMaterial({ color: '#9b87f5' });
-  }, []);
-
-  // Memoize line object
-  const line = useMemo(() => {
-    return new THREE.Line(lineGeometry, lineMaterial);
-  }, [lineGeometry, lineMaterial]);
-
+  console.log('Rendering PriceChart3D with data:', data);
+  
   return (
     <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       
-      <primitive object={line} />
-      
-      {points.map((point, i) => (
-        <mesh key={i} position={point}>
-          <sphereGeometry args={[0.1, 16, 16]} />
-          <meshStandardMaterial color="#9b87f5" />
-        </mesh>
-      ))}
+      <PriceLineGraph data={data} />
+      <DataPoints data={data} />
+      <Grid />
       
       <OrbitControls
         enablePan={false}
@@ -63,8 +27,6 @@ const PriceChart3D = ({ data }: PriceChart3DProps) => {
         minDistance={5}
         maxDistance={15}
       />
-      
-      <gridHelper args={[20, 20, "#666666", "#444444"]} />
     </Canvas>
   );
 };
